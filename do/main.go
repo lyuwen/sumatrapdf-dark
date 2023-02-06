@@ -162,7 +162,7 @@ func main() {
 		// on Cloudflare pages build machine
 		os.Chdir("/opt/buildhome/repo")
 	} else {
-		cdUpDir("sumatrapdf")
+		cdUpDir("sumatrapdf-dark")
 	}
 	logf(ctx(), "Current directory: %s\n", currDirAbsMust())
 	timeStart := time.Now()
