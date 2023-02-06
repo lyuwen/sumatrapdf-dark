@@ -1,7 +1,8 @@
-name: Daily build
+name: Build pre-release
 on:
-  schedule:
-    - cron: "0 1 * * *"
+  push:
+  pull_request:
+  workflow_dispatch:
 jobs:
   build:
     name: Build
@@ -19,6 +20,10 @@ jobs:
           fetch-depth: 0
 
       - name: Build
-        env:
-          CERT_PWD: ${{ secrets.CERT_PWD }}
-        run: .\doit.bat -ci-daily
+        run: .\doit.bat -build-pre-rel
+
+      - name: upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: sumatra-pdf-prerel
+          path: out/final-prerel/
