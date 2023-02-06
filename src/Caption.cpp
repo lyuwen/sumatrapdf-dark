@@ -159,8 +159,9 @@ void CaptionInfo::UpdateColors(bool activeWindow) {
         !SUCCEEDED(theme::GetThemeColor(
             theme, WP_CAPTION, 0,
             (activeWindow || dwm::IsCompositionEnabled()) ? TMT_CAPTIONTEXT : TMT_INACTIVECAPTIONTEXT, &textColor))) {
-        textColor = (activeWindow || dwm::IsCompositionEnabled()) ? GetSysColor(COLOR_CAPTIONTEXT)
-                                                                  : GetSysColor(COLOR_INACTIVECAPTIONTEXT);
+        // textColor = (activeWindow || dwm::IsCompositionEnabled()) ? GetSysColor(COLOR_CAPTIONTEXT)
+        //                                                           : GetSysColor(COLOR_INACTIVECAPTIONTEXT);
+        textColor = GetAppColor(AppColor::MainWindowText);
     }
 }
 

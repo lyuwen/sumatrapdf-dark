@@ -645,7 +645,8 @@ using Gdiplus::PathData;
 
 struct TabsCtrl;
 
-#define kTabDefaultBgCol (COLORREF) - 1
+// #define kTabDefaultBgCol (COLORREF) - 1
+#define kTabDefaultBgCol RGB(0x00, 0x00, 0x00)
 
 struct TabMouseState {
     int tabIdx = -1;

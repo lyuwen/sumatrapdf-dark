@@ -13,7 +13,7 @@
 #define COL_WHITE RGB(0xff, 0xff, 0xff)
 #define COL_WHITEISH RGB(0xEB, 0xEB, 0xF9);
 #define COL_BLACK RGB(0, 0, 0)
-#define COL_BLUE_LINK RGB(0x00, 0x20, 0xa0)
+#define COL_BLUE_LINK RGB(0x99, 0xCC, 0xFF)
 
 // for tabs
 #define COL_RED RGB(0xff, 0x00, 0x00)
@@ -45,7 +45,8 @@
 #define COL_PAGE_SHADOW RGB(0x40, 0x40, 0x40)
 #else
 // SumatraPDF       0x999999 without any frame border
-#define COL_WINDOW_BG RGB(0x99, 0x99, 0x99)
+// #define COL_WINDOW_BG RGB(0x99, 0x99, 0x99)
+#define COL_WINDOW_BG RGB(0x24, 0x24, 0x24)
 #endif
 
 static COLORREF RgbToCOLORREF(COLORREF rgb) {
@@ -92,6 +93,7 @@ COLORREF GetAppColor(AppColor col) {
 
     if (col == AppColor::NoDocBg) {
         // GetCurrentTheme()->document.canvasColor
+        return COL_DARK_GRAY;
         return GetNoDocBgColor();
     }
 
@@ -109,7 +111,7 @@ COLORREF GetAppColor(AppColor col) {
     }
 
     if (col == AppColor::MainWindowText) {
-        return COL_BLACK;
+        return COL_WHITE;
     }
 
     if (col == AppColor::MainWindowLink) {
@@ -153,8 +155,8 @@ COLORREF GetAppColor(AppColor col) {
     }
 
     if (col == AppColor::NotificationsBg) {
-        return MkGray(0xff);
-        // return GetAppColor(AppColor::MainWindowBg);
+        // return MkGray(0xff);
+        return GetAppColor(AppColor::MainWindowBg);
     }
 
     if (col == AppColor::NotificationsText) {
@@ -177,11 +179,11 @@ COLORREF GetAppColor(AppColor col) {
     }
 
     if (col == AppColor::TabSelectedBg) {
-        return COL_WHITE;
+        return COL_DARK_GRAY;
     }
 
     if (col == AppColor::TabSelectedText) {
-        return COL_DARK_GRAY;
+        return COL_WHITE;
     }
 
     if (col == AppColor::TabSelectedCloseX) {
@@ -194,11 +196,11 @@ COLORREF GetAppColor(AppColor col) {
     }
 
     if (col == AppColor::TabBackgroundBg) {
-        return COL_LIGHTER_GRAY;
+        return COL_BLACK;
     }
 
     if (col == AppColor::TabBackgroundText) {
-        return COL_DARK_GRAY;
+        return COL_LIGHT_GRAY;
     }
 
     if (col == AppColor::TabBackgroundCloseX) {
@@ -210,11 +212,11 @@ COLORREF GetAppColor(AppColor col) {
     }
 
     if (col == AppColor::TabHighlightedBg) {
-        return COL_LIGHT_GRAY;
+        return COL_DARK_GRAY;
     }
 
     if (col == AppColor::TabHighlightedText) {
-        return COL_BLACK;
+        return COL_WHITE;
     }
 
     if (col == AppColor::TabHighlightedCloseX) {

@@ -252,6 +252,9 @@ static void TabsContextMenu(ContextMenuEvent* ev) {
 void CreateTabbar(MainWindow* win) {
     TabsCtrl* tabsCtrl = new TabsCtrl();
 
+    // tabsCtrl->currBgCol = RGB(0x24, 0x24, 0x24);
+    // tabsCtrl->tabBackgroundBg = RGB(0x24, 0x24, 0x24);
+
     tabsCtrl->onTabClosed = [win](TabClosedEvent* ev) {
         int closedTabIdx = ev->tabIdx;
         WindowTab* tab = win->GetTab(closedTabIdx);

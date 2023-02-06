@@ -27,6 +27,12 @@
 #include "Translations.h"
 #include "Version.h"
 
+#include <dwmapi.h>
+
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+#define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif
+
 #ifndef ABOUT_USE_LESS_COLORS
 #define ABOUT_LINE_OUTER_SIZE 2
 #else
@@ -566,6 +572,8 @@ void ShowAboutWindow(MainWindow* win) {
     int dy = CW_USEDEFAULT;
     HINSTANCE h = GetModuleHandleW(nullptr);
     gHwndAbout = CreateWindowExW(0, kAboutClassName, title, style, x, y, dx, dy, nullptr, nullptr, h, nullptr);
+    BOOL value = TRUE;
+    DwmSetWindowAttribute(gHwndAbout, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
     if (!gHwndAbout) {
         return;
     }

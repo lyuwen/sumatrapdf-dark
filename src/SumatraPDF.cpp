@@ -85,6 +85,12 @@
 
 #include "utils/Log.h"
 
+#include <dwmapi.h>
+
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+#define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif
+
 using std::placeholders::_1;
 
 #define kRestrictionsFileName "sumatrapdfrestrict.ini"
@@ -629,6 +635,7 @@ static void UpdateWindowRtlLayout(MainWindow* win) {
 
 void RebuildMenuBarForWindow(MainWindow* win) {
     HMENU oldMenu = win->menu;
+    printf("Run RebuildMenuBarForWindow");
     win->menu = BuildMenu(win);
     if (!win->presentation && !win->isFullScreen && !win->isMenuHidden) {
         SetMenu(win->hwndFrame, win->menu);
@@ -1397,6 +1404,12 @@ static MainWindow* CreateMainWindow() {
     windowPos.x += (nShift * 15); // TODO: DPI scale
 
     const WCHAR* clsName = FRAME_CLASS_NAME;
+    //
+    WNDCLASS mwwc;
+    mwwc.hbrBackground = CreateSolidBrush(0xfe242424);
+    mwwc.lpszClassName = clsName;
+    RegisterClass(&mwwc);
+    //
     const WCHAR* title = kSumatraWindowTitleW;
     DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
     int x = windowPos.x;
@@ -1405,6 +1418,8 @@ static MainWindow* CreateMainWindow() {
     int dy = windowPos.dy;
     HINSTANCE h = GetModuleHandle(nullptr);
     HWND hwndFrame = CreateWindowExW(0, clsName, title, style, x, y, dx, dy, nullptr, nullptr, h, nullptr);
+    BOOL value = TRUE;
+    DwmSetWindowAttribute(hwndFrame, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
     if (!hwndFrame) {
         return nullptr;
     }
