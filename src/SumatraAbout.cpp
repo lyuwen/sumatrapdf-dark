@@ -181,7 +181,7 @@ static void DrawSumatraVersion(HWND hwnd, HDC hdc, Rect rect) {
     Rect mainRect(rect.x + (rect.dx - txtSize.cx) / 2, rect.y + (rect.dy - txtSize.cy) / 2, txtSize.cx, txtSize.cy);
     DrawAppName(hdc, mainRect.TL());
 
-    SetTextColor(hdc, WIN_COL_BLACK);
+    SetTextColor(hdc, WIN_COL_WHITE);
     SelectObject(hdc, fontVersionTxt);
     Point pt(mainRect.x + mainRect.dx + DpiScale(hwnd, kInnerPadding), mainRect.y);
 
