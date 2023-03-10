@@ -24,6 +24,7 @@ var (
 		`C:\Program Files\Microsoft Visual Studio\2022\Enterprise`,
 		`C:\Program Files\Microsoft Visual Studio\2022\Preview`,
 		`C:\Program Files\Microsoft Visual Studio\2022\Community`,
+		`D:\Program Files\Microsoft Visual Studio\2022\Community`,
 		`C:\Program Files\Microsoft Visual Studio\2022\Professional`,
 	}
 )
